@@ -1,6 +1,7 @@
 package com.ceny.controller;
 
 import com.ceny.Bean.TestBean;
+import com.ceny.model.TestModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,16 @@ public class TestController {
         list.add("hello");
         list.add("spring");
         return list;
+    }
+
+    @RequestMapping("/model")
+    public TestModel getModel(){
+        TestModel testModel = new TestModel();
+        Map<String,Integer> tmp = new HashMap<>();
+        tmp.put("ceny",789);
+        tmp.put("ceny1993",1993);
+        testModel.setInfo(tmp);
+        return testModel;
     }
 
 }
