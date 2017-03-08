@@ -3,9 +3,11 @@ package com.ceny.controller;
 import com.ceny.Bean.TestBean;
 import com.ceny.model.TestModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +36,8 @@ public class TestController {
         return map;
     }
 
-    @RequestMapping("/list")
+
+    @RequestMapping(value = "/list",produces = "application/json")
     public List<String> getList(){
         List<String> list = new ArrayList<>();
         list.add("hello");
@@ -42,14 +45,37 @@ public class TestController {
         return list;
     }
 
-    @RequestMapping("/model")
-    public TestModel getModel(){
+    @RequestMapping(value = "/list/{id}",method = RequestMethod.GET)
+    public ResponseEntity<String> findList(@PathVariable int id){
+        System.out.println(id);
+        //just a test,not correct
+        return new ResponseEntity<String>(testBean.toString(), HttpStatus.BAD_REQUEST);
+    }
+
+
+    //http://localhost:8015/model.xml?name=xiaoceny
+    //http://localhost:8015/model.json?name=xiaoceny
+    @RequestMapping(value = "/model",method = RequestMethod.GET)
+    public TestModel getModel(@RequestParam(value = "name",defaultValue = "ceny") String name){
         TestModel testModel = new TestModel();
         Map<String,Integer> tmp = new HashMap<>();
-        tmp.put("ceny",789);
-        tmp.put("ceny1993",1993);
+        tmp.put(name,789);
         testModel.setInfo(tmp);
         return testModel;
     }
+
+
+    //need set the Content-Type as application/json
+    @RequestMapping(value = "/model",method = RequestMethod.POST,consumes = "application/json")
+    public Map<String,Integer> saveModel(@RequestBody TestModel model){
+        System.out.println(model.getName());
+        Map<String,Integer> tmp = new HashMap<>();
+        tmp.put("status",1);
+        return tmp;
+    }
+
+    // TODO: 2017/3/8
+    // 在响应中设置头部信息以及REST client
+
 
 }

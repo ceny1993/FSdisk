@@ -1,11 +1,13 @@
 package com.ceny.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by chensongkui on 2017/3/3.
  */
+@XmlRootElement(name = "player")
 public class TestModel {
     private Map<String,Integer> info;
     private String name;
