@@ -1,3 +1,4 @@
 {
-  "logDir":"/appLogs/FSdisk"
+  "logDir":"/FSDisk/logs",
+  "defaultLogDir":"/defaultFSdiskLogs"
 }
