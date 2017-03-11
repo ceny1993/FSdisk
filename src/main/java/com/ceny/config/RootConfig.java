@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 public class RootConfig {
+    //can be removed
     //do nothing
     //if create bean here ,the bean will be created twice
 }

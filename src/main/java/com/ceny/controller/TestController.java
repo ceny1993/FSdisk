@@ -1,13 +1,19 @@
 package com.ceny.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.ceny.Bean.TestBean;
 import com.ceny.model.TestModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +26,8 @@ import java.util.Map;
 @RestController
 public class TestController {
 
+    private static final Logger LOGGER = LogManager.getLogger(TestController.class);
+
     @Autowired
     TestBean testBean;
 
@@ -29,10 +37,10 @@ public class TestController {
     }
 
     @RequestMapping("/map")
-    public Map<String,String> getMap(){
+    public Map<String,String> getMap() throws IOException {
         Map<String,String> map = new HashMap<>();
         map.put("kk","sds");
-        System.out.println(testBean.toString());
+        LOGGER.info("the map is: "+map);
         return map;
     }
 
