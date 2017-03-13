@@ -1,5 +1,7 @@
 package com.ceny.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,10 +14,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 public class TestInterceptor implements HandlerInterceptor {
+
+    private static final Logger LOGGER = LogManager.getLogger(TestInterceptor.class);
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        System.out.println("false");
-        return false;
+        LOGGER.info("preHandle true");
+        return true;
     }
 
     @Override

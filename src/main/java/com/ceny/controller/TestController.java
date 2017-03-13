@@ -41,6 +41,7 @@ public class TestController {
         Map<String,String> map = new HashMap<>();
         map.put("kk","sds");
         LOGGER.info("the map is: "+map);
+        LOGGER.info("the bean is: "+testBean.toString());
         return map;
     }
 
