@@ -26,7 +26,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         //do something when init
         initLog();
         initProperties();
-        LogManager.shutdown();//关闭以生效log4j2配置
+        LogManager.shutdown();
     }
 
     @Override
@@ -45,12 +45,6 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-
-//should not override here
-//    @Override
-//    public void onStartup(ServletContext var1) throws ServletException{
-//        //eg: var1.setInitParameter("spring.profiles.default", "dev");
-//    }
 
     private static void initLog(){
         try {
@@ -76,7 +70,6 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
     }
 
     private static void initProperties(){
-        //LogManager.
         try {
             Properties properties = PropertiesLoaderUtils.loadAllProperties("tmp.properties");
             LOGGER.info("the example properties of hello is: "+properties.getProperty("hello"));

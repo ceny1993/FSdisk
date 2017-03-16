@@ -1,20 +1,15 @@
-package com.ceny.config.controller;
+package com.ceny.config.controllers;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.ceny.config.beans.TestBean;
 import com.ceny.model.TestModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;

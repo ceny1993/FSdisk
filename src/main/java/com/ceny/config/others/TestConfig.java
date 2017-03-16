@@ -8,8 +8,8 @@ import javax.servlet.ServletException;
 /**
  * Created by chensongkui on 2017/3/16.
  */
-public class BasicConfig implements WebApplicationInitializer {
 
+public class TestConfig implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
