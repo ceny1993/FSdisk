@@ -1,8 +1,8 @@
-package com.ceny.controller;
+package com.ceny.config.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ceny.Bean.TestBean;
+import com.ceny.config.beans.TestBean;
 import com.ceny.model.TestModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +10,8 @@ import org.apache.logging.log4j.core.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -41,15 +43,17 @@ public class TestController {
         Map<String,String> map = new HashMap<>();
         map.put("kk","sds");
         LOGGER.info("the map is: "+map);
+        LOGGER.info("the bean is: "+testBean.toString());
         return map;
     }
 
 
     @RequestMapping(value = "/list",produces = "application/json")
-    public List<String> getList(){
+    public List<String> getList(Authentication authentication){
         List<String> list = new ArrayList<>();
         list.add("hello");
         list.add("spring");
+        LOGGER.info(authentication.getAuthorities());
         return list;
     }
 

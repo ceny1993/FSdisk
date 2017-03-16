@@ -18,10 +18,10 @@
 
     "loggers": {
       "logger":{
-        "name":"package.specialClassName",
+        "name":"com.ceny.config.WebInit",
         "level":"trace",
         "additivity":"false",
-        "AppenderRef":[{"ref": "another-ref"}]
+        "AppenderRef":[{"ref": "console"}]
       },
       "root": {
         "level": "trace",

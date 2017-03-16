@@ -1,4 +1,4 @@
-package com.ceny.config;
+package com.ceny.config.init;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +25,6 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(new TestInterceptor());
+        //registry.addInterceptor(new TestInterceptor());
     }
 }
