@@ -1,13 +1,13 @@
-package com.ceny.Bean;
+package com.ceny.config.beans;
+
+import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by chensongkui on 2017/3/3.
+ * Created by chensongkui on 2017/3/16.
  */
 
-//create bean or service here
-
+@Configuration
 public class TestBean {
-
     private static int x=0;
     private String name;
     private int id;

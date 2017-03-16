@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  * Created by chensongkui on 2017/3/3.
  */
+@Deprecated
 @XmlRootElement(name = "player")
 public class TestModel {
     private Map<String,Integer> info;

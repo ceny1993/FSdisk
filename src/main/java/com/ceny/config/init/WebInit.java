@@ -1,4 +1,4 @@
-package com.ceny.config;
+package com.ceny.config.init;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

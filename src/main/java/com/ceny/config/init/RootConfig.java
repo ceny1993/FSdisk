@@ -1,10 +1,6 @@
-package com.ceny.config;
+package com.ceny.config.init;
 
-import com.ceny.Bean.TestBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Created by chensongkui on 2017/3/3.

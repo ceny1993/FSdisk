@@ -1,8 +1,8 @@
-package com.ceny.controller;
+package com.ceny.config.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ceny.Bean.TestBean;
+import com.ceny.config.beans.TestBean;
 import com.ceny.model.TestModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
