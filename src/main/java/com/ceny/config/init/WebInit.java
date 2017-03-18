@@ -9,8 +9,10 @@ import org.apache.logging.log4j.core.util.IOUtils;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,7 +39,6 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        //return null;
         return new Class[]{WebConfig.class};
     }
 
@@ -46,6 +47,12 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[]{"/"};
     }
 
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration){
+        MultipartConfigElement mce = new MultipartConfigElement("/FSdisk/tmpfile",2097152,4194304,0);
+        registration.setMultipartConfig(mce);
+
+    }
     private static void initLog(){
         try {
             String appConfPath = WebConfig.class.getClassLoader().getResource("appConf.json").getPath();
