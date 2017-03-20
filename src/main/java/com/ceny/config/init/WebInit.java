@@ -27,7 +27,6 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
     static {
         //do something when init
         initLog();
-        initProperties();
         LogManager.shutdown();
     }
 
@@ -76,12 +75,4 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
         }
     }
 
-    private static void initProperties(){
-        try {
-            Properties properties = PropertiesLoaderUtils.loadAllProperties("tmp.properties");
-            LOGGER.info("the example properties of hello is: "+properties.getProperty("hello"));
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
-    }
 }

@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +47,15 @@ public class TestController {
     }
 
 
+    //many ways for getting user info
     @RequestMapping(value = "/list",produces = "application/json")
-    public List<String> getList(Authentication authentication){
+    public List<String> getList(Principal principal, Authentication authentication){
         List<String> list = new ArrayList<>();
         list.add("hello");
         list.add("spring");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         LOGGER.info(authentication.getAuthorities());
+        LOGGER.info(getClass().getPackage().getImplementationVersion());
         return list;
     }
 

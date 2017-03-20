@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
+import javax.sql.DataSource;
+
 /**
  * Created by chensongkui on 2017/3/17.
  */
@@ -17,6 +19,13 @@ public class BeansConfig {
         return new StandardServletMultipartResolver();
     }
 
+    @Bean
+    public DataSource dataSource(){
+
+        //new embedded
+        return null;
+
+    }
 //    @Bean("multipartResolver")
 //    public CommonsMultipartResolver commonsMultipartResolver(){
 //        CommonsMultipartResolver tmp = new CommonsMultipartResolver();

@@ -1,4 +1,4 @@
-package com.ceny.config.others;
+package com.ceny.config.init;
 
 import org.springframework.web.WebApplicationInitializer;
 
@@ -6,10 +6,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 /**
- * Created by chensongkui on 2017/3/16.
+ * Created by chensongkui on 2017/3/20.
  */
-
-public class TestConfig implements WebApplicationInitializer {
+public class LoadProfile implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {

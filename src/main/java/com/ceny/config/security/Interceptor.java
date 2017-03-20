@@ -1,4 +1,4 @@
-package com.ceny.config.others;
+package com.ceny.config.security;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,16 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by chensongkui on 2017/3/12.
+ * Created by chensongkui on 2017/3/20.
  */
+public class Interceptor implements HandlerInterceptor {
 
-public class TestInterceptor implements HandlerInterceptor {
-
-    private static final Logger LOGGER = LogManager.getLogger(TestInterceptor.class);
+    private static final Logger LOGGER = LogManager.getLogger(Interceptor.class);
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        LOGGER.info("preHandle true");
+        LOGGER.info("preHandle of interceptor is true");
         return true;
     }
 
