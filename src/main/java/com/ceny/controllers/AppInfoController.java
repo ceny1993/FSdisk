@@ -45,4 +45,11 @@ public class AppInfoController {
     public Map<String,String> getName() throws IOException {
         return name;
     }
+
+
+    @RequestMapping(value = "/table",method = RequestMethod.GET)
+    public Map<String,String> testTable() throws IOException {
+        return name;
+    }
+
 }

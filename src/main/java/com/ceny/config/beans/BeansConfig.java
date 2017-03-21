@@ -18,14 +18,7 @@ public class BeansConfig {
         System.out.println("===========");
         return new StandardServletMultipartResolver();
     }
-
-    @Bean
-    public DataSource dataSource(){
-
-        //new embedded
-        return null;
-
-    }
+    
 //    @Bean("multipartResolver")
 //    public CommonsMultipartResolver commonsMultipartResolver(){
 //        CommonsMultipartResolver tmp = new CommonsMultipartResolver();
