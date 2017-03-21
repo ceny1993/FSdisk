@@ -15,11 +15,16 @@ public class Customer {
     private String firstName;
     private String lastName;
 
+    //not happy
+    @Transient
+    private TmpClass tmpClass;
+
     protected Customer() {}
 
-    public Customer(String firstName, String lastName) {
+    public Customer(String firstName, String lastName, TmpClass tmpClass) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.tmpClass = tmpClass;
     }
 
     @Override

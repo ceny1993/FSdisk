@@ -18,7 +18,7 @@ public class BeansConfig {
         System.out.println("===========");
         return new StandardServletMultipartResolver();
     }
-    
+
 //    @Bean("multipartResolver")
 //    public CommonsMultipartResolver commonsMultipartResolver(){
 //        CommonsMultipartResolver tmp = new CommonsMultipartResolver();

@@ -50,7 +50,7 @@ public class MainConfig {
     @Bean("transactionManager")
     public JpaTransactionManager jpaTransactionManager(){
         JpaTransactionManager tmp = new JpaTransactionManager();
-        //tmp.setEntityManagerFactory((EntityManagerFactory) lcemfb());
+        tmp.setEntityManagerFactory(lcemfb().getObject());
         return tmp;
     }
 }
