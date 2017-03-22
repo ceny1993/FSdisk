@@ -24,7 +24,7 @@
         "AppenderRef":[{"ref": "console"}]
       },
       "root": {
-        "level": "trace",
+        "level": "INFO",
         "AppenderRef": [
           { "ref": "console" },
           { "ref": "file" }

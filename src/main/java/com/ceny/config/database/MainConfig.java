@@ -13,7 +13,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
  */
 @Configuration
 public class MainConfig {
-    @Bean("datasource")
+
+    @Bean
     public BasicDataSource dataSource(){
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -26,7 +27,6 @@ public class MainConfig {
         return basicDataSource;
     }
 
-    // TODO: 2017/3/21
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
@@ -38,19 +38,26 @@ public class MainConfig {
         return adapter;
     }
 
-    @Bean("entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean lcemfb(){
+    //注意名称
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setDataSource(dataSource());
         lcemfb.setJpaVendorAdapter(jpaVendorAdapter());
         lcemfb.setPackagesToScan("com.ceny.domain");
+
+        // TODO: 2017/3/22
+        //lcemfb.setJpaProperties();
+        //AbstractEntityManagerFactoryBean的174行
+        //会将HibernateJpaVendorAdapter的属性赋给lcemfb
+
         return lcemfb;
     }
 
-    @Bean("transactionManager")
-    public JpaTransactionManager jpaTransactionManager(){
+    @Bean
+    public JpaTransactionManager transactionManager(){
         JpaTransactionManager tmp = new JpaTransactionManager();
-        tmp.setEntityManagerFactory(lcemfb().getObject());
+        tmp.setEntityManagerFactory(entityManagerFactory().getObject());
         return tmp;
     }
 }
