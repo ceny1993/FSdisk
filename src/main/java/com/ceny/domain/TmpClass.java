@@ -3,6 +3,7 @@ package com.ceny.domain;
 /**
  * Created by chensongkui on 2017/3/21.
  */
+@Deprecated
 public class TmpClass {
     private String str;
     private Integer num;

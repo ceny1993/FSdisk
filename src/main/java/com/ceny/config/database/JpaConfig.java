@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.ceny.config.database")
+@EnableJpaRepositories(basePackages = "com.ceny.domain")
 public class JpaConfig {
 }

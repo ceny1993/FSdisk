@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by chensongkui on 2017/3/16.
  */
-
+@Deprecated
 @Configuration
 public class TestBean {
     private static int x=0;
