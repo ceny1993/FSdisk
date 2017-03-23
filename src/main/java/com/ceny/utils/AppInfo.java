@@ -26,6 +26,9 @@ public class AppInfo {
     public String getVersion(){
         return env.getProperty("version");
     }
+    public String getDiskPath(Long userId){
+        return env.getProperty("userFilePath")+"/"+userId;
+    }
 
 /*
 * 因吹斯听

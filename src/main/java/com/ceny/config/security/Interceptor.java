@@ -17,6 +17,8 @@ public class Interceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        LOGGER.info(httpServletRequest.getUserPrincipal().getName());
+        // TODO: 2017/3/24  init bean
         LOGGER.info("preHandle of interceptor is true");
         return true;
     }
