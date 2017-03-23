@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by chensongkui on 2017/3/3.
  */
-
+@Deprecated
 @RestController
 public class TestController {
 

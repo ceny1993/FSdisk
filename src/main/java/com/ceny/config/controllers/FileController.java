@@ -15,6 +15,7 @@ import java.io.*;
  * Created by chensongkui on 2017/3/17.
  */
 // TODO: 2017/3/18  clean it
+@Deprecated
 @RestController
 public class FileController {
 
