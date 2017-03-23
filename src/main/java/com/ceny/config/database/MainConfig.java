@@ -8,14 +8,16 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import javax.sql.DataSource;
+
 /**
  * Created by chensongkui on 2017/3/21.
  */
 @Configuration
 public class MainConfig {
 
-    @Bean
-    public BasicDataSource dataSource(){
+    @Bean("datasource")
+    public DataSource dataSource(){
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/fsdisk?useUnicode=true&characterEncoding=UTF-8");
