@@ -56,7 +56,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/init",method = RequestMethod.POST)
     public boolean init(Authentication auth){
-        userInfoProvider.init("ceny");
+        userInfoProvider.init(auth.getName());
         return true;
     }
 }
