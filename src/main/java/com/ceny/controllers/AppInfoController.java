@@ -1,5 +1,6 @@
 package com.ceny.controllers;
 
+import com.ceny.app.UserInfoProvider;
 import com.ceny.utils.AppInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,8 +25,12 @@ public class AppInfoController {
     @Autowired
     Environment env;
 
+    @Autowired
+    UserInfoProvider userInfoProvider;
+
     @RequestMapping(value = "/app/version",method = RequestMethod.GET)
     public String getVersion() throws IOException {
+        LOGGER.info(userInfoProvider.getStatus());
         return AppInfo.getInstance().getVersion();
     }
 

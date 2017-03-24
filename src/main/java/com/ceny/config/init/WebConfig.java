@@ -28,4 +28,5 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new Interceptor());
     }
+    // TODO: 2017/3/24  http://stackoverflow.com/questions/18218386/cannot-autowire-service-in-handlerinterceptoradapter
 }

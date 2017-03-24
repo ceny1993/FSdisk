@@ -2,6 +2,7 @@ package com.ceny.controllers;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.ceny.app.UserInfoProvider;
 import com.ceny.domain.UserInfo;
 import com.ceny.domain.UserInfoRepo;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +23,9 @@ public class UserController {
     private static final StandardPasswordEncoder ENCODER = new StandardPasswordEncoder("ceny");
     @Autowired
     UserInfoRepo userInfoRepo;
+
+    @Autowired
+    UserInfoProvider userInfoProvider;
 
 
     @RequestMapping(value = "/user/check",method = RequestMethod.GET)
@@ -47,5 +51,11 @@ public class UserController {
         UserInfo userInfo = new UserInfo(userName,password);
         userInfoRepo.saveAndFlush(userInfo);
         return userInfo;
+    }
+
+    @RequestMapping(value = "/user/init",method = RequestMethod.POST)
+    public boolean init(){
+        userInfoProvider.setStaus(true);
+        return true;
     }
 }
