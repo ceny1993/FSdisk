@@ -8,28 +8,31 @@ import java.util.List;
 public class UserFile {
 
     private String fileName;
-    private String filePath;
+    private String parentName;
     private int level;
-    private List<UserFile> childs;
+    private List<UserFile> children;
 
-    public UserFile(String fileName, String filePath, int level){
+    public UserFile(String fileName, String parentName, int level){
         this.fileName = fileName;
-        this.filePath = filePath;
+        this.parentName = parentName;
         this.level = level;
     }
     public String getFileName(){
         return fileName;
     }
 
-    public void setChilds(List<UserFile> childs){
-        this.childs = childs;
+    public void setChilds(List<UserFile> children){
+        this.children = children;
     }
 
-    public List<UserFile> getChilds(){
-        return childs;
+    public List<UserFile> getChildren(){
+        return children;
     }
 
     public int getLevel(){
         return level;
+    }
+    public String getParentName(){
+        return parentName;
     }
 }

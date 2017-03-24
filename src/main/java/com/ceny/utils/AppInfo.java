@@ -29,6 +29,9 @@ public class AppInfo {
     public String getDiskPath(String userName){
         return env.getProperty("userFilePath")+"/"+userName;
     }
+    public String getDiskPath(){
+        return env.getProperty("userFilePath");
+    }
 
 /*
 * 因吹斯听

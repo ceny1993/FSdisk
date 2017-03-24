@@ -31,15 +31,22 @@ public class FileController {
         if(userInfoProvider.getRootFile() == null){
             return null;
         }
-        return userInfoProvider.getRootFile().getChilds();
+        return userInfoProvider.getRootFile().getChildren();
     }
 
     @RequestMapping(value = "/user/folder", method = RequestMethod.POST)
     public Status createFolder(@RequestBody JSONObject jsonObject, Authentication auth){
-        String path = AppInfo.getInstance().getDiskPath(auth.getName())+jsonObject.getString("path");
-        LOGGER.info(path);
-        File file = new File(path);
+        String parentPath = jsonObject.getString("parentPath");
+        String folderName = jsonObject.getString("folderName");
+        StringBuilder pathBuilder = new StringBuilder();
+        pathBuilder.append(AppInfo.getInstance().getDiskPath(auth.getName()))
+                .append(parentPath)
+                .append("/")
+                .append(folderName);
+        LOGGER.info(pathBuilder);
+        File file = new File(pathBuilder.toString());
         if(file.mkdirs()){
+            userInfoProvider.addFolder(parentPath,folderName);
             return Status.SUCCESS;
         }
         else{

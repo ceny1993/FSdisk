@@ -20,6 +20,7 @@ public class UserInfo {
     public String password;
     //give up
     //@Column(name = "pic_url")
+    public String nickName;
     public String picUrl;
     public String role = "USER";
     public boolean accountEnable = false;
@@ -45,13 +46,13 @@ public class UserInfo {
         lastActiveTime = data;
     }
 
-    public String toString(){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id",id);
-        jsonObject.put("name",userName);
-        jsonObject.put("registerTime",registerTime);
-        return jsonObject.toString();
-    }
+//    public String toString(){
+//        JSONObject jsonObject = new JSONObject();
+//        jsonObject.put("id",id);
+//        jsonObject.put("name",userName);
+//        jsonObject.put("registerTime",registerTime);
+//        return jsonObject.toString();
+//    }
 
 
 

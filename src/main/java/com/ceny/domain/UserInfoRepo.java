@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserInfoRepo extends JpaRepository<UserInfo,Long> {
+    UserInfo findOneByUserName(String userName);
 }

@@ -22,7 +22,8 @@ public class ScanUserFile {
         }
         List<UserFile> userFiles = new ArrayList<>();
         for(File file:rootFile.listFiles()){
-            UserFile userFile = new UserFile(file.getName(),file.getPath(),level+1);
+            System.out.println(file.getParent()+"=====");
+            UserFile userFile = new UserFile(file.getName(),rootFile.getName(),level+1);
             userFile.setChilds(scan(file,level+1));
             userFiles.add(userFile);
         }
