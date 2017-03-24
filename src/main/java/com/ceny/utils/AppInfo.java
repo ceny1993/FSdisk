@@ -26,8 +26,8 @@ public class AppInfo {
     public String getVersion(){
         return env.getProperty("version");
     }
-    public String getDiskPath(Long userId){
-        return env.getProperty("userFilePath")+"/"+userId;
+    public String getDiskPath(String userName){
+        return env.getProperty("userFilePath")+"/"+userName;
     }
 
 /*

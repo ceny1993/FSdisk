@@ -8,6 +8,7 @@ import com.ceny.domain.UserInfoRepo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,8 +55,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/init",method = RequestMethod.POST)
-    public boolean init(){
-        userInfoProvider.setStaus(true);
+    public boolean init(Authentication auth){
+        userInfoProvider.init("ceny");
         return true;
     }
 }
