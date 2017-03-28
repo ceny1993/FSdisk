@@ -10,5 +10,5 @@ import java.util.List;
  */
 @Repository
 public interface FileInfoRepo extends JpaRepository<FileInfo,Long> {
-    List<FileInfo> findAllByParentId(long parentId);
+    List<FileInfo> findAllByParentIdAndIsDelete(long parentId,boolean isDelete);
 }

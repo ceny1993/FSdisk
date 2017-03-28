@@ -5,18 +5,16 @@ import com.ceny.domain.FileInfoRepo;
 import com.ceny.domain.UserInfo;
 import com.ceny.domain.UserInfoRepo;
 import com.ceny.utils.AppInfo;
-import com.ceny.utils.ScanUserFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Stack;
 
@@ -53,19 +51,21 @@ public class UserInfoProvider {
     }
 
     public void init(String userName){
-        File rootDir = getRootDir(userName);
-        rootFile = generateRootFile(rootDir);
-        userInfo = userInfoRepo.findOneByUserName(userName);
-        userInfo.diskUsed += 100;
-        userInfoRepo.saveAndFlush(userInfo);
-        LOGGER.info("init done: "+userName);
-        LOGGER.info(userInfo);
-        isDone = true;
+//        File rootDir = getRootDir(userName);
+//        rootFile = generateRootFile(rootDir);
+//        userInfo = userInfoRepo.findOneByUserName(userName);
+//        userInfo.diskUsed += 100;
+//        userInfoRepo.saveAndFlush(userInfo);
+//        LOGGER.info("init done: "+userName);
+//        LOGGER.info(userInfo);
+//        isDone = true;
     }
 
     public void uploadFile(MultipartFile file, String userName,long parentId, String notes, String tags){
         String diskFileName = System.currentTimeMillis()+"_"+file.getOriginalFilename();
         String parentPath = getParentPath(userName,parentId);
+        if(parentPath == null)
+            return ;
         try {
             File tmpFile = new File(parentPath+"/"+diskFileName);
             OutputStream out = new FileOutputStream(tmpFile);
@@ -89,6 +89,8 @@ public class UserInfoProvider {
     public void createFolder(String userName, long parentId, String folderName, String notes, String tags){
         String diskFolderName = System.currentTimeMillis()+"_"+folderName;
         String parentPath = getParentPath(userName,parentId);
+        if(parentPath == null)
+            return ;
         LOGGER.info(parentPath);
         File file = new File(parentPath+"/"+diskFolderName);
         file.mkdirs();
@@ -96,11 +98,23 @@ public class UserInfoProvider {
         fileInfoRepo.saveAndFlush(fileInfo);
     }
 
+    public void softDelete(long fileId){
+        FileInfo fileInfo = fileInfoRepo.findOne(fileId);
+        fileInfo.isDelete = true;
+        fileInfo.deleteTime = new Date();
+        fileInfoRepo.saveAndFlush(fileInfo);
+    }
+
+    public void hardDelete(long fileId){
+        // TODO: 2017/3/28  
+    }
+    
     private String getParentPath(String userName, long parentId){
         Stack<String> stack = new Stack<>();
         while (parentId!=-1L){
             FileInfo fileInfo = fileInfoRepo.findOne(parentId);
-            if(fileInfo == null || !fileInfo.isFolder){
+            if(fileInfo == null || !fileInfo.isFolder || fileInfo.isDelete){
+                LOGGER.info("delete");
                 //detail check
                 return null;
             }
@@ -119,8 +133,12 @@ public class UserInfoProvider {
 
 
     public List<FileInfo> getFileList(long parentId){
-        return fileInfoRepo.findAllByParentId(parentId);
+        // TODO: 2017/3/28 属于已被软删除的文件夹中的文件 
+        return fileInfoRepo.findAllByParentIdAndIsDelete(parentId,false);
     }
+    
+    
+    /*
     private File getRootDir(String userName){
         rootPath = AppInfo.getInstance().getDiskPath(userName);
         File rootDir = new File(rootPath);
@@ -151,16 +169,7 @@ public class UserInfoProvider {
         parentFile.getChildren().add(newUserFile);
 
     }
-
-    @Deprecated
-    public void removeFolder(String parentName , String folderName){
-        // TODO: 2017/3/25
-    }
-
-    public void removeFile(String parentPath, String fileName){
-
-    }
-
+    
     private UserFile getParentFile(String parentPath){
         //根据父路径定位该父亲文件夹
         String[] folderList = parentPath.split("/");
@@ -178,5 +187,6 @@ public class UserInfoProvider {
         }
         return parentFile;
     }
+    */
 
 }

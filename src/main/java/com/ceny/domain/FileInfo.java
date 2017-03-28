@@ -1,10 +1,8 @@
 package com.ceny.domain;
 
-import com.ceny.utils.StringUtil;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.io.File;
 import java.util.Date;
 
 /**
@@ -20,18 +18,18 @@ public class FileInfo {
     public String fileName;
     public String diskFileName;//物理存储的文件名，不会变
     public String contentType;
-    public long size = 0;
+    public long size = 0L;
     public boolean isFolder = false;
     public long parentId;
     //public int level;
     public Date uploadTime;
     public Date deleteTime;
     public boolean isDelete = false;
-    boolean isShow = false;
-    boolean isShare = false;
+    public boolean isShow = false;
+    public boolean isShare = false;
     public int downloadCount = 0;
-    String notes;
-    String tags;
+    public String notes;
+    public String tags;
 
     protected FileInfo(){};
 
@@ -59,25 +57,4 @@ public class FileInfo {
         this.isFolder = true;
     }
 
-
-
-    /*
-    *
-    * id
-user_name
-content_type
-file_name
-disk_name
-is_folder
-level
-path
-size
-is_delete
-delete_time
-is_show
-is_share
-count_download
-notes
-tags
-    * */
 }

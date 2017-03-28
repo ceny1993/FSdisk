@@ -33,17 +33,8 @@ public class FileController {
     @RequestMapping(value = "/user/file",method = RequestMethod.GET)
     public List<FileInfo> getUserFiles(@RequestParam(name = "parentId",defaultValue = "-1") long parentId){
         return userInfoProvider.getFileList(parentId);
-//        if(userInfoProvider.getRootFile() == null){
-//            return null;
-//        }
-//        return userInfoProvider.getRootFile().getChildren();
     }
 
-    @RequestMapping(value = "/user/file/{id}")
-    public Status deleteFile(@PathVariable long id){
-        LOGGER.info(id);
-        return Status.SUCCESS;
-    }
 
     @RequestMapping(value = "/file",method = RequestMethod.POST)
     public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("parentId") long parentId, Authentication auth){
@@ -56,6 +47,20 @@ public class FileController {
     public String createFolder(@RequestBody JSONObject jsonObject, Authentication auth){
         userInfoProvider.createFolder(auth.getName(),jsonObject.getLongValue("parentId"),jsonObject.getString("folderName"),"foldernotes","foldertags");
         return "folder done";
+    }
+
+    @RequestMapping(value = "/user/file/{id}")
+    public String deleteFile(@PathVariable long id, @RequestParam(name = "isSoft",defaultValue = "true") boolean isSoft, Authentication auth){
+        LOGGER.info(id);
+        if(isSoft){
+            userInfoProvider.softDelete(id);
+            LOGGER.info("soft delete");
+        }
+        else{
+            userInfoProvider.softDelete(id);
+            // TODO: 2017/3/28 hardDelete
+        }
+        return "delete file done";
     }
 
 
