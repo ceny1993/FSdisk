@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
@@ -133,10 +134,37 @@ public class UserInfoProvider {
 
 
     public List<FileInfo> getFileList(long parentId){
-        // TODO: 2017/3/28 属于已被软删除的文件夹中的文件 
-        return fileInfoRepo.findAllByParentIdAndIsDelete(parentId,false);
+        List<FileInfo> fileInfos = fileInfoRepo.findAllByParentIdAndIsDelete(parentId,false);
+        List<FileInfo> resultFileInfos = new ArrayList<>();
+        for(FileInfo fileInfo:fileInfos){
+            if(!isDelete(fileInfo.parentId)) {
+                resultFileInfos.add(fileInfo);
+            }
+        }
+        return resultFileInfos;
     }
-    
+
+    private boolean isDelete(long parentId){
+        LOGGER.info(parentId);
+        // TODO: 2017/3/28 cache
+        if(parentId == -1L){
+            return false;
+        }
+        FileInfo fileInfo = fileInfoRepo.findOne(parentId);
+        if(fileInfo.isDelete){
+            return true;
+        }
+        return isDelete(fileInfo.parentId);
+    }
+
+    public void restoreFile(long fileId){
+        FileInfo fileInfo = fileInfoRepo.findOne(fileId);
+        if(fileInfo.isDelete){
+            fileInfo.isDelete = false;
+            fileInfo.deleteTime = null;
+            fileInfoRepo.save(fileInfo);
+        }
+    }
     
     /*
     private File getRootDir(String userName){
