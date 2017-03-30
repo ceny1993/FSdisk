@@ -25,8 +25,8 @@ public class FileInfo {
     public Date uploadTime;
     public Date deleteTime;
     public boolean isDelete = false;
-    public boolean isShow = false;
-    public boolean isShare = false;
+    public boolean isPublic = false;//公开 任何人都可以查看
+    public boolean isShare = false;//分享 该文件是否正处于分享状态  关闭之后旁人无法通过分享下载
     public int downloadCount = 0;
     public String notes;
     public String tags;

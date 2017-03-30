@@ -90,6 +90,9 @@ public class FileController {
         return "restore file done";
     }
 
+    //分享 sharePrivate sharePublic
+    //通过分享来下载的接口要公开
+    //fileList分页
 
 
 
